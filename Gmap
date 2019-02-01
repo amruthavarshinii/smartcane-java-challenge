@@ -1,0 +1,28 @@
+import java.io.*;
+import java.util.*;
+import java.net.*;
+import javax.net.ssl.HttpsURLConnection.*;
+class Gmap
+{
+public static void main(String[] args)
+{
+try
+{
+URL url = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyAsdijpn0_XOpdHA7zSPmvUiQPSiYAg5Hs");
+HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+conn.setRequestMethod("GET");
+String line = "";
+String outputString = "";
+BufferedReader reader = new BufferedReader(
+new InputStreamReader(conn.getInputStream()));
+while ((line = reader.readLine()) != null) {
+     outputString += line;
+ }
+System.out.println(outputString);
+}
+catch(Exception e)
+{
+System.out.println("Error");
+}
+}
+}
